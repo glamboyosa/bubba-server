@@ -23,6 +23,13 @@ config :bubba, BubbaWeb.Endpoint,
 # at the `config/runtime.exs`.
 config :bubba, Bubba.Mailer, adapter: Swoosh.Adapters.Local
 
+# CRON
+config :bubba, Bubba.Scheduler,
+  jobs: [
+    # Every minute
+    {"* * * * *", fn -> IO.puts("hey") end}
+  ]
+
 # Swoosh API client is needed for adapters other than SMTP.
 config :swoosh, :api_client, false
 

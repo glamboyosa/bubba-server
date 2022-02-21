@@ -13,7 +13,9 @@ defmodule Bubba.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Bubba.PubSub},
       # Start the Endpoint (http/https)
-      BubbaWeb.Endpoint
+      BubbaWeb.Endpoint,
+      Bubba.Scheduler
+
       # Start a worker by calling: Bubba.Worker.start_link(arg)
       # {Bubba.Worker, arg}
     ]
