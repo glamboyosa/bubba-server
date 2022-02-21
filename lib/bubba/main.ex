@@ -3,13 +3,13 @@ defmodule Main do
   This file is responsible for generating our daily word AND checking if the answer is correct and returning the shape of data we want.
   """
   def generate_random_word do
-    {Application.app_dir(:bubba, Path.join(["priv", "current_word"])),
+    {Application.app_dir(:bubba, Path.join(["priv", "current_word.txt"])),
      Application.app_dir(:bubba, Path.join(["priv", "words.txt"]))}
     |> generate
   end
 
   def verify_answer(answer, attempts) do
-    load_words(Application.app_dir(:bubba, Path.join(["lib", "bubba", "current_word"])))
+    load_words(Application.app_dir(:bubba, Path.join(["lib", "bubba", "current_word.txt"])))
     |> String.split("\n", trim: true)
     |> compare(answer, attempts)
   end
@@ -28,8 +28,8 @@ defmodule Main do
           |> Enum.random()
 
         File.write(
-          Application.app_dir(:bubba, Path.join(["priv", "current_word"])),
-          random_word
+          Application.app_dir(:bubba, Path.join(["priv", "current_word.txt"])),
+          Base.encode64(random_word)
         )
 
         nil
