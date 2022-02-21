@@ -1,0 +1,4 @@
+#!/bin/bash
+MIX_ENV=${MIX_ENV:-dev}
+NAME=bubba-${MIX_ENV}
+elixir --sname $NAME -S mix phx.server
