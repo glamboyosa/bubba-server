@@ -9,7 +9,7 @@ defmodule Main do
   end
 
   def verify_answer(answer, attempts) do
-    load_words(Application.app_dir(:bubba, Path.join(["lib", "bubba", "current_word.txt"])))
+    load_words(Application.app_dir(:bubba, Path.join(["priv", "current_word.txt"])))
     |> String.split("\n", trim: true)
     |> compare(answer, attempts)
   end
@@ -37,6 +37,9 @@ defmodule Main do
   end
 
   defp compare(word, answer, attempts) do
+    [word] = word
+    word = Base.decode64(word) |> String.split("", trim: true)
+
     result =
       for {letter_in_answer, answer_index} <-
             Enum.with_index(String.split(answer, "", trim: true), &{&1, &2}) do
