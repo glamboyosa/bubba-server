@@ -27,7 +27,7 @@ config :bubba, Bubba.Mailer, adapter: Swoosh.Adapters.Local
 config :bubba, Bubba.Scheduler,
   jobs: [
     # Every minute
-    {"* * * * *", fn -> IO.puts("hey") end}
+    {"* * * * *", {Main, :generate_random_word, []}}
   ]
 
 # Swoosh API client is needed for adapters other than SMTP.
