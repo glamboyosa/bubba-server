@@ -3,8 +3,7 @@ defmodule Main do
   This file is responsible for generating our daily word AND checking if the answer is correct and returning the shape of data we want.
   """
   def generate_random_word do
-    {Application.app_dir(:bubba, Path.join(["priv", "current_word.txt"])),
-     Application.app_dir(:bubba, Path.join(["priv", "words.txt"]))}
+    Application.app_dir(:bubba, Path.join(["priv", "words.txt"]))
     |> generate
   end
 
@@ -14,7 +13,7 @@ defmodule Main do
     |> compare(answer, attempts)
   end
 
-  defp generate({current_word_path, words_path}) do
+  defp generate(words_path) do
     IO.puts(words_path)
 
     random_word =
@@ -34,7 +33,8 @@ defmodule Main do
 
   defp compare(word, answer, attempts) do
     [word] = word
-    word = Base.decode64(word) |> String.split("", trim: true)
+    {:ok, word} = Base.decode64(word)
+    word = word |> String.trim() |> String.split("", trim: true)
 
     result =
       for {letter_in_answer, answer_index} <-

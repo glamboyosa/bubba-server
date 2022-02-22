@@ -26,8 +26,8 @@ config :bubba, Bubba.Mailer, adapter: Swoosh.Adapters.Local
 # CRON
 config :bubba, Bubba.Scheduler,
   jobs: [
-    # Every minute
-    {"* * * * *", {Main, :generate_random_word, []}}
+    # Every day at midnight
+    {"0 0 * * *", {Main, :generate_random_word, []}}
   ]
 
 # Swoosh API client is needed for adapters other than SMTP.
