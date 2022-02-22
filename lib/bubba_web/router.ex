@@ -13,6 +13,12 @@ defmodule BubbaWeb.Router do
     plug :accepts, ["json"]
   end
 
+  scope "/api", BubbaWeb do
+    pipe_through :api
+
+    post("/attempts", AttemptsController, :attempts)
+  end
+
   scope "/", BubbaWeb do
     pipe_through :browser
 
