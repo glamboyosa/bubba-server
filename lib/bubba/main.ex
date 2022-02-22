@@ -17,23 +17,19 @@ defmodule Main do
   defp generate({current_word_path, words_path}) do
     IO.puts(words_path)
 
-    cond do
-      File.exists?(current_word_path) ->
-        File.rm!(current_word_path)
+    random_word =
+      load_words(words_path)
+      |> String.split("\n", trim: true)
+      |> Enum.random()
 
-      true ->
-        random_word =
-          load_words(words_path)
-          |> String.split("\n", trim: true)
-          |> Enum.random()
+    # Log the random word to the Fly / local terminal
+    IO.puts(random_word)
 
-        File.write(
-          Application.app_dir(:bubba, Path.join(["priv", "current_word.txt"])),
-          Base.encode64(random_word)
-        )
-
-        nil
-    end
+    File.write(
+      Application.app_dir(:bubba, Path.join(["priv", "current_word.txt"])),
+      Base.encode64(random_word),
+      [:write]
+    )
   end
 
   defp compare(word, answer, attempts) do
@@ -52,7 +48,7 @@ defmodule Main do
               %{bg: '#fcf55f', letter: letter_in_answer}
 
             Enum.member?(word, letter_in_answer) === false ->
-              %{bg: '#000', letter: letter_in_answer}
+              %{bg: '#fff', letter: letter_in_answer}
 
             true ->
               ''
