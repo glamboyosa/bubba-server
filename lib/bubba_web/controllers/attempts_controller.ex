@@ -3,7 +3,7 @@ defmodule BubbaWeb.AttemptsController do
   alias Main
 
   def attempts(conn, params) do
-    data = Main.verify_answer(params.answer, params.attempts)
+    data = Main.verify_answer(params["answer"], params["attempts"])
     json(conn, data)
   end
 end

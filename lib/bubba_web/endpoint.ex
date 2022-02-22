@@ -31,6 +31,9 @@ defmodule BubbaWeb.Endpoint do
     plug Phoenix.Ecto.CheckRepoStatus, otp_app: :bubba
   end
 
+  # CORS
+  plug CORSPlug
+
   plug Phoenix.LiveDashboard.RequestLogger,
     param_key: "request_logger",
     cookie_key: "request_logger"

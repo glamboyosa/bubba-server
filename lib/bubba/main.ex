@@ -42,13 +42,13 @@ defmodule Main do
         for {letter_in_word, word_index} <- Enum.with_index(word, &{&1, &2}) do
           cond do
             letter_in_answer == letter_in_word && answer_index == word_index ->
-              %{bg: '#00ff00', letter: letter_in_answer}
+              %{bg: "#00ff00", letter: letter_in_answer}
 
             letter_in_answer == letter_in_word ->
-              %{bg: '#fcf55f', letter: letter_in_answer}
+              %{bg: "#fcf55f", letter: letter_in_answer}
 
             Enum.member?(word, letter_in_answer) === false ->
-              %{bg: '#fff', letter: letter_in_answer}
+              %{bg: "#fff", letter: letter_in_answer}
 
             true ->
               ''
