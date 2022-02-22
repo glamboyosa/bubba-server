@@ -1,0 +1,1 @@
+call "%~dp0\bubba" eval Bubba.Release.migrate
