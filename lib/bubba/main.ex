@@ -34,7 +34,7 @@ defmodule Main do
   defp compare(word, answer, attempts) do
     [word] = word
     {:ok, word} = Base.decode64(word)
-    word = "clasp" |> String.trim() |> String.split("", trim: true)
+    word = word |> String.trim() |> String.split("", trim: true)
 
     {_popped, wod} =
       word
@@ -55,9 +55,30 @@ defmodule Main do
       end)
       |> List.pop_at(0)
 
+    {_popped2, wod2} =
+      String.split(answer, "", trim: true)
+      |> Enum.with_index()
+      |> Enum.map(fn {el, index} ->
+        prev =
+          cond do
+            index !== 0 -> index - 1
+            true -> 0
+          end
+
+        current = index
+
+        cond do
+          Enum.at(word, prev) === Enum.at(word, current) -> el
+          true -> ''
+        end
+      end)
+      |> List.pop_at(0)
+
+    IO.puts(List.flatten(wod2) > 0)
+
     response =
       cond do
-        length(List.flatten(wod)) > 0 ->
+        length(List.flatten(wod)) > 0 || length(List.flatten(wod2)) > 0 ->
           res =
             for {letter_in_answer, answer_index} <-
                   Enum.with_index(String.split(answer, "", trim: true), &{&1, &2}) do

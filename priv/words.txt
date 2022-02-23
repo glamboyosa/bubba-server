@@ -35,8 +35,6 @@ break
 class
 coach 
 doubt 
-enemy
-earth
 ocean
 peace
 phase
