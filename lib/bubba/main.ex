@@ -67,7 +67,16 @@ defmodule Main do
         %{solved: true, attempts: attempts, data: result}
 
       true ->
-        %{solved: false, attempts: attempts, data: result}
+        %{
+          solved: false,
+          attempts: attempts,
+          answer:
+            cond do
+              attempts == 6 -> List.to_string(word)
+              true -> nil
+            end,
+          data: result
+        }
     end
   end
 
