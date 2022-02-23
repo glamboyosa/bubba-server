@@ -35,7 +35,6 @@ break
 class
 coach 
 doubt 
-eager
 enemy
 earth
 ocean
@@ -48,3 +47,4 @@ cider
 layer 
 world
 grasp
+clasp
