@@ -26,7 +26,7 @@ config :bubba, Bubba.Mailer, adapter: Swoosh.Adapters.Local
 # CRON
 config :bubba, Bubba.Scheduler,
   jobs: [
-    # Every day at midnight
+    # Every dat at midnight
     {"0 0 * * *", {Main, :generate_random_word, []}}
   ]
 
