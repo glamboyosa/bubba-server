@@ -154,7 +154,7 @@ defmodule Main do
                 attempts: attempts,
                 answer:
                   cond do
-                    attempts == 6 -> List.to_string(word)
+                    attempts == 3 -> List.to_string(word)
                     true -> nil
                   end,
                 data: result
