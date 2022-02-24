@@ -74,8 +74,6 @@ defmodule Main do
       end)
       |> List.pop_at(0)
 
-    IO.puts(List.flatten(wod2) > 0)
-
     response =
       cond do
         length(List.flatten(wod)) > 0 || length(List.flatten(wod2)) > 0 ->
@@ -100,7 +98,6 @@ defmodule Main do
                     %{bg: "#00ff00", letter: letter_in_answer}
 
                   letter_in_answer == letter_in_word && letter_in_answer !== prev_letter ->
-                    IO.puts(prev_letter)
                     %{bg: "#fcf55f", letter: letter_in_answer}
 
                   Enum.member?(word, letter_in_answer) === false ->
@@ -186,7 +183,6 @@ defmodule Main do
                     %{bg: "#00ff00", letter: letter_in_answer}
 
                   letter_in_answer == letter_in_word && letter_in_answer !== prev_letter ->
-                    IO.puts(prev_letter)
                     %{bg: "#fcf55f", letter: letter_in_answer}
 
                   Enum.member?(word, letter_in_answer) === false ->
